@@ -73,20 +73,21 @@ body {
 
 #buttons{
     margin-top:10px;
-    width: 350px;
+    width: 50vw;
     height: 80px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
 }
 
 #dismissAlarmButton {
-    width:80px;
+    width:20vw;
     margin-left: auto;
     margin-right: auto;
 }
 
 #resetAlarmButton{
-    width:80px;
+    width:20vw;
     margin-left: auto;
     margin-right: auto;
 }
