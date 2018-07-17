@@ -131,6 +131,7 @@
                     infoWindow.open(map);
                     if (!hasLocatedUser) {
                         map.setCenter(pos);
+                        hasLocatedUser = true
                     }
                     userLocation = pos
                 }, function () {
