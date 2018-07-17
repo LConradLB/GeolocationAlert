@@ -10,26 +10,28 @@
 
 <body>
     <script src="./vibration.js"></script>
-
-    <select id="selectModule">
-        <option value="./audio/Harmonica.mp3">Harmonica</option>
-        <option value="./audio/Alarm-Clock.mp3">Alarm Clock</option>
-        <option value="./audio/Bells.mp3">Church Bells</option>
-        <option value="./audio/Sheep.mp3">Sheep</option>
-    </select>
-
-    <form>
-        Distance From Destination:
-        <input type="text" id="markerRadiusText" name="markerRadiusText" value="100">
-        <input type="button" value="Change Radius" onclick="changeMarkerRadius();">
-    </form>
-
-    <div id="dismissAlarmButton">
-        <button class="button" onclick="stopAlarm()">Dismiss Alarm</button>
+    <div id="selectElement">
+        <select id="selectModule">
+            <option value="./audio/Harmonica.mp3">Harmonica</option>
+            <option value="./audio/Alarm-Clock.mp3">Alarm Clock</option>
+            <option value="./audio/Bells.mp3">Church Bells</option>
+            <option value="./audio/Sheep.mp3">Sheep</option>
+        </select>
     </div>
+    <div id="setupForm">
+        <form>
+            Distance From Destination:
+            <input type="text" id="markerRadiusText" name="markerRadiusText" value="100">
+            <input type="button" value="Change Radius" onclick="changeMarkerRadius();">
+        </form>
 
-    <div id="resetAlarmButton" style="width:50vw;height:40px;color:aqua">
-        <button class="button" onclick="resetAlarm()">Reset Alarm Alarm</button>
+        <div id="dismissAlarmButton">
+            <button class="button" onclick="stopAlarm()">Dismiss Alarm</button>
+        </div>
+
+        <div id="resetAlarmButton" style="width:50vw;height:40px;color:aqua">
+            <button class="button" onclick="resetAlarm()">Reset Alarms</button>
+        </div>
     </div>
 
     <div id="map"></div>
@@ -138,7 +140,9 @@
         function checkDistance(source, markerLocationArray) {
 
             if (markerLocationArray.length > 0) {
+                var isWithinMarker = false
                 for (var marker of markerLocationArray) {
+
                     if (getDistance(source, marker.position) < markerRadius) {
                         console.log("You are within " + markerRadius + "m of a marker")
                         if (!isNearMarker) {
@@ -146,6 +150,9 @@
                             isNearMarker = true
                         }
                     }
+                }
+                if (!isWithinMarker) {
+                    resetAlarm()
                 }
             }
         }
