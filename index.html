@@ -21,17 +21,32 @@
             margin: 0;
             padding: 0;
         }
+        #dismissAlarmButton{
+            margin-left:auto;
+            margin-right:auto;
+            
+        }
     </style>
 </head>
 
 <body>
+    <script src="./vibration.js"></script>
     
     <select id="selectModule">
-        <option value="./audio/2528111_Hermans Habit - La La Land 2016.mp3">Alarm1</option>
-        <option value="./audio/2528111_Hermans Habit - La La Land 2016.mp3">Alarm2</option>
-        <option value="./audio/2528111_Hermans Habit - La La Land 2016.mp3">Alarm3</option>
-        <option value="./audio/2528111_Hermans Habit - La La Land 2016.mp3">Alarm4</option>
+        <option value="./audio/2528111_Hermans Habit - La La Land 2016.mp3">Jazz</option>
+        <option value="./audio/Alarm-Clock.mp3">Alarm Clock</option>
+        <option value="./audio/Bells.mp3">Church Bells</option>
+        <option value="./audio/Sheep.mp3">Sheep</option>
     </select>
+
+    <form>
+        Distance From Destination:
+        <input type="text" name="markerRadius" value="">
+        <input type="submit" value="Submit">
+        
+    </form> 
+
+    <div id="dismissAlarmButton" style="width:50vw;height:40px;color:aqua"><button>Dismiss Alarm</button></div>
 
     <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEhRLlbIv_eyQiqMLJNME0iMG4AOHcGb4&libraries=geometry"></script>
@@ -44,6 +59,16 @@
         var markerLocationArray = []
         var userLocation = {}
         var isNearMarker = false
+        var markerRadius = 1000
+
+
+
+        document.getElementByName("markerRadius").addEventListener("submit", changeMarkerRadius);
+
+
+        function changeMarkerRadius(){
+            var markerRadius = 
+        }
 
 
         function initMap() {
@@ -119,17 +144,33 @@
         }
 
         function checkDistance(source, markerLocationArray) {
+        
             if (markerLocationArray.length > 0) {
                 for (var marker of markerLocationArray) {
                     if (getDistance(source, marker.position) < 1000) {
                         console.log("You are within 1000m of a marker")
                         if(!isNearMarker){
-                            sound()
+                            startAlarm()
                             isNearMarker = true
                         }
                     }
                 }
             }
+        }
+
+        function startAlarm(){
+            vibrate()
+            sound()
+        }
+
+        function vibrate(){
+            var canVibrate = "vibrate" in navigator || "mozVibrate" in navigator;
+
+            if (canVibrate && !("vibrate" in navigator))
+            navigator.vibrate = navigator.mozVibrate;
+
+            navigator.vibrate([500,110,500,110,450,110,200,110,170,40,450,110,200,110,170,40,500]);
+
         }
 
         function sound() {
@@ -140,8 +181,8 @@
 
             audio.src = audioSource
             audio.addEventListener("ended", function () {
-                document.removeChild(this);
                 isNearMarker = false
+                document.removeChild(this);
             }, false);
             audio.play();
         }
