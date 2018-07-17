@@ -24,11 +24,8 @@
         <input type="button" value="Change Radius" onclick="changeMarkerRadius();">
     </form>
 
-
-    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
-
     <div id="dismissAlarmButton" style="width:50vw;height:40px;color:aqua">
-        <button>Dismiss Alarm</button>
+        <button class="button">Dismiss Alarm</button>
     </div>
 
     <div id="map"></div>
@@ -177,6 +174,10 @@
                 document.removeChild(this);
             }, false);
             audio.play();
+        }
+        
+        function stopAlarm(){
+            
         }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEhRLlbIv_eyQiqMLJNME0iMG4AOHcGb4&callback=initMap">
