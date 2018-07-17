@@ -9,6 +9,7 @@ button {
     box-shadow: none;
     border-radius: 0;
   }
+  
   button:focus {
     outline: none
   }
