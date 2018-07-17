@@ -26,7 +26,7 @@
 
 <body>
     
-    <select>
+    <select id="selectModule">
         <option value="./audio/2528111_Hermans Habit - La La Land 2016.mp3">Alarm1</option>
         <option value="./audio/2528111_Hermans Habit - La La Land 2016.mp3">Alarm2</option>
         <option value="./audio/2528111_Hermans Habit - La La Land 2016.mp3">Alarm3</option>
@@ -133,11 +133,15 @@
         }
 
         function sound() {
-            var audio1 = document.createElement("audio1");
+            var audio = document.createElement("audio");
+            
+            var e = document.getElementById("selectModule");
+            var audioSource = e.options[e.selectedIndex].value;
 
-            audio1.src = "./2528111_Hermans Habit - La La Land 2016.mp3";
+            audio.src = audioSource
             audio.addEventListener("ended", function () {
                 document.removeChild(this);
+                isNearMarker = false
             }, false);
             audio.play();
         }
