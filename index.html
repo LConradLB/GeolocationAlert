@@ -24,8 +24,12 @@
         <input type="button" value="Change Radius" onclick="changeMarkerRadius();">
     </form>
 
-    <div id="dismissAlarmButton" style="width:50vw;height:40px;color:aqua">
-        <button class="button">Dismiss Alarm</button>
+    <div id="dismissAlarmButton">
+        <button class="button" onclick="stopAlarm()">Dismiss Alarm</button>
+    </div>
+
+    <div id="resetAlarmButton" style="width:50vw;height:40px;color:aqua">
+        <button class="button" onclick="resetAlarm()">Reset Alarm Alarm</button>
     </div>
 
     <div id="map"></div>
@@ -41,7 +45,7 @@
         var isNearMarker = false
         var markerRadius = 1000
         var hasLocatedUser = false
-
+        var audio = document.createElement("audio");
 
 
         document.getElementById("markerRadiusText").addEventListener("submit", changeMarkerRadius());
@@ -136,7 +140,7 @@
             if (markerLocationArray.length > 0) {
                 for (var marker of markerLocationArray) {
                     if (getDistance(source, marker.position) < markerRadius) {
-                        console.log("You are within "+ markerRadius + "m of a marker")
+                        console.log("You are within " + markerRadius + "m of a marker")
                         if (!isNearMarker) {
                             startAlarm()
                             isNearMarker = true
@@ -163,8 +167,6 @@
         }
 
         function sound() {
-            var audio = document.createElement("audio");
-
             var e = document.getElementById("selectModule");
             var audioSource = e.options[e.selectedIndex].value;
 
@@ -175,12 +177,22 @@
             }, false);
             audio.play();
         }
-        
-        function stopAlarm(){
-            document.removeChild(this);
+
+        function stopAlarm() {
+            audio.pause();
+            audio.currentTime = 0;
         }
 
-        
+        //isNearMarker = false
+        function resetAlarm() {
+            if (audio.paused) {
+                isNearMarker = false;
+                audio.play();
+            } else {
+                audio.currentTime = 0
+            }
+
+        }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEhRLlbIv_eyQiqMLJNME0iMG4AOHcGb4&callback=initMap">
     </script>
