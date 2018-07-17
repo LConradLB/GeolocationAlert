@@ -27,6 +27,20 @@
             margin-right: auto;
 
         }
+
+        select {
+            margin: 50px;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(https://image.flaticon.com/icons/png/128/92/92386.png) 96% / 15% no-repeat #eee;
+            
+        }
     </style>
 </head>
 
@@ -34,7 +48,7 @@
     <script src="./vibration.js"></script>
 
     <select id="selectModule">
-        <option value="./audio/2528111_Hermans Habit - La La Land 2016.mp3">Jazz</option>
+        <option value="./audio/Harmonica.mp3">Harmonica</option>
         <option value="./audio/Alarm-Clock.mp3">Alarm Clock</option>
         <option value="./audio/Bells.mp3">Church Bells</option>
         <option value="./audio/Sheep.mp3">Sheep</option>
@@ -170,7 +184,7 @@
             if (canVibrate && !("vibrate" in navigator)) {
                 navigator.vibrate = navigator.mozVibrate;
             }
-            navigator.vibrate([500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500]);
+            navigator.vibrate([50000, 110, 50000, 110, 45000, 110, 20000, 110, 17000, 40, 45000, 110, 20000, 110, 17000, 40, 50000]);
         }
 
         function sound() {
