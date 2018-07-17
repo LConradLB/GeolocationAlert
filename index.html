@@ -95,7 +95,7 @@
                     lat: 51.397,
                     lng: 0.3644
                 },
-                zoom: 6
+                zoom: 17
             });
             infoWindow = new google.maps.InfoWindow;
 
@@ -111,6 +111,10 @@
             updateLocation();
         }, 3000)
 
+        function setZoom(zoomLevel){
+            map.setZoom(zoomLevel);
+        }
+
         function updateLocation() {
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
@@ -123,7 +127,6 @@
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Location found.');
                     infoWindow.open(map);
-                    map.setZoom(15);
                     map.setCenter(pos);
                     userLocation = pos
                 }, function () {
