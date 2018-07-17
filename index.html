@@ -5,43 +5,7 @@
     <title>Geolocation</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-
-        #map {
-            height: 100%;
-        }
-
-        /* Optional: Makes the sample page fill the window. */
-
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #dismissAlarmButton {
-            margin-left: auto;
-            margin-right: auto;
-
-        }
-
-        select {
-            margin: 50px;
-            width: 150px;
-            padding: 5px 35px 5px 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            height: 34px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background: url(https://image.flaticon.com/icons/png/128/92/92386.png) 96% / 15% no-repeat #eee;
-
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
@@ -174,8 +138,8 @@
 
             if (markerLocationArray.length > 0) {
                 for (var marker of markerLocationArray) {
-                    if (getDistance(source, marker.position) < 1000) {
-                        console.log("You are within 1000m of a marker")
+                    if (getDistance(source, marker.position) < markerRadius) {
+                        console.log("You are within "+ markerRadius + "m of a marker")
                         if (!isNearMarker) {
                             startAlarm()
                             isNearMarker = true
