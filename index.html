@@ -60,7 +60,8 @@
         <input type="button" value="Change Radius" onclick="changeMarkerRadius();">
     </form>
 
-   
+
+    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
 
     <div id="dismissAlarmButton" style="width:50vw;height:40px;color:aqua">
         <button>Dismiss Alarm</button>
@@ -78,6 +79,7 @@
         var userLocation = {}
         var isNearMarker = false
         var markerRadius = 1000
+        var hasLocatedUser = false
 
 
 
@@ -111,7 +113,7 @@
             updateLocation();
         }, 3000)
 
-        function setZoom(zoomLevel){
+        function setZoom(zoomLevel) {
             map.setZoom(zoomLevel);
         }
 
@@ -127,7 +129,9 @@
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Location found.');
                     infoWindow.open(map);
-                    map.setCenter(pos);
+                    if (!hasLocatedUser) {
+                        map.setCenter(pos);
+                    }
                     userLocation = pos
                 }, function () {
                     handleLocationError(true, infoWindow, map.getCenter());
