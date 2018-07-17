@@ -30,16 +30,16 @@
 
         select {
             margin: 50px;
-  width: 150px;
-  padding: 5px 35px 5px 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  height: 34px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: url(https://image.flaticon.com/icons/png/128/92/92386.png) 96% / 15% no-repeat #eee;
-            
+            width: 150px;
+            padding: 5px 35px 5px 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            height: 34px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: url(https://image.flaticon.com/icons/png/128/92/92386.png) 96% / 15% no-repeat #eee;
+
         }
     </style>
 </head>
@@ -58,6 +58,9 @@
         Distance From Destination:
         <input type="text" id="markerRadiusText" name="markerRadiusText" value="100">
     </form>
+
+    <input type="button" value="clickDistanceButton" onclick="changeMarkerRadius();">
+
 
     <div id="dismissAlarmButton" style="width:50vw;height:40px;color:aqua">
         <button>Dismiss Alarm</button>
@@ -82,7 +85,7 @@
 
 
         function changeMarkerRadius() {
-            var markerRadius = document.getElementById("markerRadiusText").value;
+            markerRadius = document.getElementById("markerRadiusText").value;
         }
 
 
@@ -184,7 +187,9 @@
             if (canVibrate && !("vibrate" in navigator)) {
                 navigator.vibrate = navigator.mozVibrate;
             }
-            navigator.vibrate([50000, 110, 50000, 110, 45000, 110, 20000, 110, 17000, 40, 45000, 110, 20000, 110, 17000, 40, 50000]);
+            navigator.vibrate([50000, 110, 50000, 110, 45000, 110, 20000, 110, 17000, 40, 45000, 110, 20000, 110, 17000,
+                40, 50000
+            ]);
         }
 
         function sound() {
