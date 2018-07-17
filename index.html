@@ -66,11 +66,11 @@
 
 
 
-        document.getElementById("markerRadiusText").addEventListener("submit", changeMarkerRadius);
+        document.getElementById("markerRadiusText").addEventListener("submit", changeMarkerRadius());
 
 
         function changeMarkerRadius() {
-            var markerRadius = 
+            var markerRadius = document.getElementById("markerRadiusText").value;
         }
 
 
