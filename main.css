@@ -3,70 +3,75 @@ button {
     margin: 0 10px 0 0;
     padding: 15px 45px;
     font-size: 12px;
-    font-family: "Bitter",serif;
+    font-family: "Bitter", serif;
     line-height: 1.8;
     appearance: none;
     box-shadow: none;
     border-radius: 0;
-  }
+}
 
-  button:focus {
+button:focus {
     outline: none
-  }
-  
-  .press button {
+}
+
+.press button {
     color: #fff;
     background-color: #6496c8;
     border: none;
     border-radius: 15px;
     box-shadow: 0 10px #27496d;
-  }
+}
 
-   /* Always set the map height explicitly to define the size of the div
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 
-   #map {
-       height: 100%;
-   }
+#map {
+    height: 100%;
+    border-radius: 60px;
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
 
-   /* Optional: Makes the sample page fill the window. */
+/* Optional: Makes the sample page fill the window. */
 
-   html,
-   body {
-       height: 100%;
-       margin: 0;
-       padding: 0;
-   }
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-   #dismissAlarmButton {
-       margin-left: auto;
-       margin-right: auto;
-   }
+#dismissAlarmButton {
+    margin-left: auto;
+    margin-right: auto;
+}
 
-   #selectModule {
-       width: 150px;
-       margin-left: auto;
-       margin-right: auto;
-       padding: 5px 35px 5px 5px;
-       font-size: 16px;
-       border: 1px solid #ccc;
-       height: 34px;
-       -webkit-appearance: none;
-       -moz-appearance: none;
-       appearance: none;
-       background: url(https://image.flaticon.com/icons/png/128/92/92386.png) 96% / 15% no-repeat #eee;
-   }
+#selectModule {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(https://image.flaticon.com/icons/png/128/92/92386.png) 96% / 15% no-repeat #eee;
+}
 
-   #selectElement{
+#selectElement {
     width: 200px;
     margin-left: auto;
     margin-right: auto;
-    margin-top:10px;
-    margin-bottom:10px;
-   }
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
-   #setupForm{
+#setupForm {
     width: 70vw;
     margin-left: auto;
     margin-right: auto;
-   }
+}
