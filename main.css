@@ -9,12 +9,12 @@ button {
     box-shadow: none;
     border-radius: 0;
   }
-  
+
   button:focus {
     outline: none
   }
   
-  section.press button {
+  .press button {
     color: #fff;
     background-color: #6496c8;
     border: none;
