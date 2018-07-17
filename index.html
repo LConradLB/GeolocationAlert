@@ -189,6 +189,7 @@
 
         function stopAlarm() {
             audio.pause();
+            navigator.vibrate(0)
             audio.currentTime = 0;
         }
 
