@@ -42,7 +42,7 @@
 
     <form>
         Distance From Destination:
-        <input type="text" name="markerRadiusText" value="">
+        <input type="text" id="markerRadiusText" name="markerRadiusText" value="">
         <input type="submit" value="Submit">
 
     </form>
@@ -66,7 +66,7 @@
 
 
 
-        document.getElementByName("markerRadiusText").addEventListener("submit", changeMarkerRadius);
+        document.getElementById("markerRadiusText").addEventListener("submit", changeMarkerRadius);
 
 
         function changeMarkerRadius() {
