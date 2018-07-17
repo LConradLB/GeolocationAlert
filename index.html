@@ -57,10 +57,10 @@
     <form>
         Distance From Destination:
         <input type="text" id="markerRadiusText" name="markerRadiusText" value="100">
+        <input type="button" value="Change Radius" onclick="changeMarkerRadius();">
     </form>
 
-    <input type="button" value="clickDistanceButton" onclick="changeMarkerRadius();">
-
+   
 
     <div id="dismissAlarmButton" style="width:50vw;height:40px;color:aqua">
         <button>Dismiss Alarm</button>
@@ -81,7 +81,7 @@
 
 
 
-        document.getElementById("markerRadiusTex").addEventListener("submit", changeMarkerRadius());
+        document.getElementById("markerRadiusText").addEventListener("submit", changeMarkerRadius());
 
 
         function changeMarkerRadius() {
@@ -123,6 +123,7 @@
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Location found.');
                     infoWindow.open(map);
+                    map.setZoom(15);
                     map.setCenter(pos);
                     userLocation = pos
                 }, function () {
