@@ -42,9 +42,8 @@
 
     <form>
         Distance From Destination:
-        <input type="text" id="markerRadiusText" name="markerRadiusText" value="">
-        <input type="submit" value="Submit">
-
+        <input type="text" id="markerRadiusText" name="markerRadiusText" value="1000">
+        <a style="width:50px;height:50px;color:black" href="javascript:void(0);" onclick="changeMarkerRadius();">
     </form>
 
     <div id="dismissAlarmButton" style="width:50vw;height:40px;color:aqua">
@@ -70,7 +69,7 @@
 
 
         function changeMarkerRadius() {
-            var markerRadius = document.getElementById("markerRadiusText").value;
+            markerRadius = document.getElementById("markerRadiusText").value;
         }
 
 
@@ -172,7 +171,7 @@
             if (canVibrate && !("vibrate" in navigator)) {
                 navigator.vibrate = navigator.mozVibrate;
             }
-            navigator.vibrate([500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500]);
+            navigator.vibrate([50000, 110, 50000, 110, 45000, 110, 20000, 110, 17000, 40, 45000, 110, 20000, 110, 17000, 40, 50000]);
 
         }
 
