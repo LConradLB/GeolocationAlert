@@ -170,7 +170,7 @@
         }
 
         function startAlarm() {
-            console.log("dismissed:",hasDismissed)
+            console.log("dismissed:", hasDismissed)
             if (!hasDismissed) {
                 vibrate()
                 sound()
@@ -206,11 +206,11 @@
         function stopAlarm() {
             console.log("stopping alarm")
             hasDismissed = true
-            console.log("Dismiss:",hasDismissed)
+            console.log("Dismiss:", hasDismissed)
             audio.pause();
             navigator.vibrate(0)
             audio.currentTime = 0;
-            
+
         }
 
         //isNearMarker = false
@@ -221,11 +221,17 @@
                 isNearMarker = false;
                 hasDismissed = false;
                 audio.currentTime = 0
+                if ("vibrate" in navigator) {
+                    navigator.vibrate(0)
+                }
             } else {
                 audio.pause()
                 isNearMarker = false;
                 hasDismissed = false;
                 audio.currentTime = 0
+                if ("vibrate" in navigator) {
+                    navigator.vibrate(0)
+                }
             }
 
         }
