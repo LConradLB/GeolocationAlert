@@ -176,14 +176,17 @@
         }
 
         function vibrate() {
-            var canVibrate = "vibrate" in navigator || "mozVibrate" in navigator;
+            if ("vibrate" in navigator) {
+                var canVibrate = "vibrate" in navigator || "mozVibrate" in navigator;
 
-            if (canVibrate && !("vibrate" in navigator)) {
-                navigator.vibrate = navigator.mozVibrate;
+                if (canVibrate && !("vibrate" in navigator)) {
+                    navigator.vibrate = navigator.mozVibrate;
+                }
+                navigator.vibrate([50000, 110, 50000, 110, 45000, 110, 20000, 110, 17000, 40, 45000, 110, 20000, 110,
+                    17000,
+                    40, 50000
+                ]);
             }
-            navigator.vibrate([50000, 110, 50000, 110, 45000, 110, 20000, 110, 17000, 40, 45000, 110, 20000, 110, 17000,
-                40, 50000
-            ]);
         }
 
         function sound() {
