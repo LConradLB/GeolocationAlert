@@ -11,7 +11,9 @@
 
 <body>
     <script src="./vibration.js"></script>
-    <div id="header"> <p id="HeaderText">ALARM SETTINGS</p></div>
+    <div id="header">
+        <p id="HeaderText">ALARM SETTINGS</p>
+    </div>
     <div>
         <div id="selectElement">
             <select id="selectModule">
@@ -25,10 +27,11 @@
     <div id="setupForm">
         <p id="RadiusText">RADIUS: 1000M</p>
         <div class="sliderSymbols">
-            <img src="./assets/plus.png"  class="sliderSymbols" id="plus"/>
-            <img src="./assets/minus.png" class="sliderSymbols" id="minus"/>
+            <img src="./assets/plus.png" class="sliderSymbols" id="plus" />
+            <img src="./assets/minus.png" class="sliderSymbols" id="minus" />
         </div>
-            <div class="minus"></div> <div class="plus"></div>
+        <div class="minus"></div>
+        <div class="plus"></div>
         <div class="slidecontainer">
             <input type="range" min="1" max="2000" value="200" class="slider" id="radiusSlider">
         </div>
@@ -46,6 +49,7 @@
 
     <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEhRLlbIv_eyQiqMLJNME0iMG4AOHcGb4&libraries=geometry"></script>
+    <script src="https://unpkg.com/sweetalert2@7.17.0/dist/sweetalert2.all.js"></script>
     <script>
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service
@@ -136,6 +140,7 @@
 
         //Add marker to map
         function placeMarker(position, map) {
+
             var marker = new google.maps.Marker({
                 position: position,
                 map: map
@@ -144,6 +149,12 @@
             markerLocationArray.push(marker)
             //map.panTo(position);
             console.log(getDistance(userLocation, position))
+
+            swal({
+                title: "Alarm Placed!",
+                html: "An alarm has been placed at the location you tapped",
+                confirmButtonText: "Thanks!",
+            });
         }
 
         function getDistance(source, destination) {
