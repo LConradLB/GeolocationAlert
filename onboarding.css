@@ -7,6 +7,14 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+#logoImage{
+    max-width:700px;
+    width:60vw;
+    height:auto;
+    margin-left:auto;
+    margin-right:auto;
+}
+
 #completeOnboarding{
     padding: 20px;
     background-color:#ffffff;
@@ -14,4 +22,35 @@ body {
     margin-left:auto;
     margin-right:auto;
     width: fit-content;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: .3rem;
+    color:#d01807;
+}
+
+a{
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: .3rem;
+}
+
+#headerDiv{
+    padding: 20px;
+    background-color:#ffffff;
+    margin-left:auto;
+    margin-right:auto;
+    width: fit-content;
+    margin-top:15px;
+    margin-bottom: 30px;
+}
+
+#headerTextContainer{
+    margin-left:auto;
+    margin-right:auto;
+    width: fit-content;
+}
+
+#headerText{
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: .3rem;
 }
