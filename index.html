@@ -156,7 +156,7 @@
 
                     if (getDistance(source, marker.position) < markerRadius) {
                         console.log("You are within " + markerRadius + "m of a marker")
-                        if (!isNearMarker && !hasDismissed) {
+                        if (!isNearMarker) {
                             startAlarm()
                             isNearMarker = true
                         }
@@ -169,8 +169,10 @@
         }
 
         function startAlarm() {
-            vibrate()
-            sound()
+            if (!hasDismissed) {
+                vibrate()
+                sound()
+            }
         }
 
         function vibrate() {
@@ -208,7 +210,7 @@
             hasDismissed = false
             if (audio.paused) {
                 isNearMarker = false;
-                audio.play();
+                audio.currentTime = 0
             } else {
                 audio.currentTime = 0
             }
