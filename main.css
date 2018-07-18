@@ -201,7 +201,7 @@ p{
       height:15px;
       width:15px;
       font-size:15px;
-      display:flex;
+      display:inline-block;
       flex-direction:row;
       align-items:center;
       justify-content:center;
@@ -222,7 +222,7 @@ p{
           height:15px;
           width:15px;
           font-size:15px;
-          display:flex;
+          display:inline-block;
           flex-direction:row;
           align-items:center;
           justify-content:center;
