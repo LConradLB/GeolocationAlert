@@ -13,6 +13,7 @@ body {
     height:auto;
     margin-left:auto;
     margin-right:auto;
+    display:block;
 }
 
 #completeOnboarding{
@@ -25,6 +26,7 @@ body {
     font-family: 'Lato', sans-serif;
     letter-spacing: .3rem;
     color:#d01807;
+    margin-bottom:30px;
 }
 
 a{
@@ -53,4 +55,35 @@ a{
     text-decoration: none;
     font-family: 'Lato', sans-serif;
     letter-spacing: .3rem;
+    
+}
+
+#QuickStartGuideHeader{
+    margin-left:auto;
+    margin-right:auto;
+    width: fit-content;
+    
+}
+
+#guideDiv{
+
+    max-width:740px;
+    width:80vw;
+    margin-left:auto;
+    margin-right:auto;
+    /*background-color:#ffffff;*/
+    margin-bottom:20px;
+}
+
+.quickStartImg{
+    max-width:300px;
+    width:40vw;
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+}
+
+#principlesText{
+    padding:10px;
+    color:#ffffff;
 }
