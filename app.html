@@ -150,8 +150,14 @@
             markerLocationArray.push(marker)
             //map.panTo(position);
             console.log(getDistance(userLocation, position))
+            
 
-            swal("Added Location")
+            swal({
+                title: "Alarm Placed!",
+                html: "An alarm has been placed at the location you tapped",
+                confirmButtonText: "Thanks!",
+            });
+            //swal("Added Location")
         }   
 
 
@@ -188,6 +194,11 @@
             if (!hasDismissed) {
                 vibrate()
                 sound()
+                swal({
+                title: "Wake Up!",
+                html: "You have arrived at a destination area",
+                confirmButtonText: "Acknowledged!",
+            });
             }
         }
 
