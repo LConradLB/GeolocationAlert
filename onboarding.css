@@ -37,11 +37,11 @@ a{
 
 #headerDiv{
     padding: 20px;
-    background-color:#ffffff;
-    margin-left:auto;
-    margin-right:auto;
-    width: fit-content;
-    margin-top:15px;
+    background-color: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
+    /* margin-top: 15px; */
     margin-bottom: 30px;
 }
 
