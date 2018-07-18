@@ -191,16 +191,16 @@ p{
 
 .circle {
     border-radius:50%;
-        width:200px;
-        height:200px;
+        width:20px;
+        height:20px;
         background-color:rgb(44,108,128)
         }
     
     .circle::before {
       content: "+";
-      height:200px;
-      width:200px;
-      font-size:200px;
+      height:20px;
+      width:20px;
+      font-size:20px;
       display:flex;
       flex-direction:row;
       align-items:center;
