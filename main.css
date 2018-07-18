@@ -212,7 +212,7 @@ p{
         background-color:rgb(44,108,128)
         }
     
-    .circle::before {
+#plus::before {
       content: "+";
       height:15px;
       width:15px;
@@ -225,15 +225,8 @@ p{
       font-family:courier;
       color:white;
     }
-
-.minus {
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    background-color: rgb(44,108,128)
-     }
         
-    .minus::before {
+#minus::before {
           content: "-";
           height:15px;
           width:15px;
