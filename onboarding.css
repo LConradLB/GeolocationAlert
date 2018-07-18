@@ -1,0 +1,17 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #424242;
+    font-family: 'Lato', sans-serif;
+}
+
+#completeOnboarding{
+    padding: 20px;
+    background-color:#ffffff;
+    text-decoration: none;
+    margin-left:auto;
+    margin-right:auto;
+    width: fit-content;
+}
