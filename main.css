@@ -189,45 +189,14 @@ p{
     padding: 20px;
 }
 
-.circle {
-    border-radius:50%;
-        width:20px;
-        height:20px;
-        background-color:rgb(44,108,128)
-        }
-    
-    .circle::before {
-      content: "+";
-      height:15px;
-      width:15px;
-      font-size:15px;
-      display:flex;
-      flex-direction:row;
-      align-items:center;
-      justify-content:center;
-      font-weight:bold;
-      font-family:courier;
-      color:white;
-    }
+.sliderSymbols{
+    height: 30px;
+}
 
-.minus {
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    background-color: rgb(44,108,128)
-     }
+#minus {
+    float: left;
+}
         
-    .minus::before {
-          content: "-";
-          height:15px;
-          width:15px;
-          font-size:15px;
-          display:flex;
-          flex-direction:row;
-          align-items:center;
-          justify-content:center;
-          font-weight:bold;
-          font-family:courier;
-          color:white;
-        }
-        
+#plus {
+    float: right;
+}
