@@ -1,5 +1,5 @@
 button {
-    display: inline-block;
+    display: flex;
     margin: 0 10px 0 0;
     padding: 15px 45px;
     font-size: 12px;
@@ -22,6 +22,14 @@ button:focus {
     box-shadow: 0 10px #27496d;
 }
 
+@media (max-width: 650px) {
+    .button {   
+        flex-direction: column;
+    }
+
+
+
+
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 
@@ -42,6 +50,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #424242;
+    font-family: 'Lato', sans-serif;
 }
 
 #selectModule {
@@ -152,4 +161,13 @@ body {
     /* Green background */
     cursor: pointer;
     /* Cursor on hover */
+}
+
+p{
+    font-family: 'Lato', sans-serif;
+}
+
+.button{
+    font-family: 'Lato', sans-serif;
+    letter-spacing: .3rem;
 }
