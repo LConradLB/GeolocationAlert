@@ -11,6 +11,7 @@
 
 <body>
     <script src="./vibration.js"></script>
+    <div id="header">ALARM SETTINGS</div>
     <div>
         <div id="selectElement">
             <select id="selectModule">
@@ -22,18 +23,18 @@
         </div>
     </div>
     <div id="setupForm">
-        <p id="RadiusText">RADIUS: 1000</p>
+        <p id="RadiusText">RADIUS: 1000M</p>
         <div class="slidecontainer">
             <input type="range" min="1" max="2000" value="200" class="slider" id="radiusSlider">
         </div>
         <section class="press">
             <div id="buttons">
                 <div id="dismissAlarmButton">
-                    <button class="button" onclick="stopAlarm()">DISMISS</button>
+                    <button class="button" onclick="stopAlarm()">DISMISS ALARM</button>
                 </div>
 
                 <div id="resetAlarmButton">
-                    <button class="button" onclick="resetAlarm()"> RESET </button>
+                    <button class="button" onclick="resetAlarm()">RESET ALARM</button>
                 </div>
             </div>
         </section>
