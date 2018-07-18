@@ -154,13 +154,6 @@
             swal("Added Location")
         }   
 
-        function createPopUp(){
-            swal({
-                title: "Alarm Placed!",
-                html: "An alarm has been placed at the location you tapped",
-                confirmButtonText: "Thanks!",
-            });
-        }
 
         function getDistance(source, destination) {
             return google.maps.geometry.spherical.computeDistanceBetween(
