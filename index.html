@@ -11,13 +11,15 @@
 
 <body>
     <script src="./vibration.js"></script>
-    <div id="selectElement">
-        <select id="selectModule">
-            <option value="./audio/Harmonica.mp3">Harmonica</option>
-            <option value="./audio/Alarm-Clock.mp3">Alarm Clock</option>
-            <option value="./audio/Bells.mp3">Church Bells</option>
-            <option value="./audio/Sheep.mp3">Sheep</option>
-        </select>
+    <div>
+        <div id="selectElement">
+            <select id="selectModule">
+                <option value="./audio/Harmonica.mp3">Harmonica</option>
+                <option value="./audio/Alarm-Clock.mp3">Alarm Clock</option>
+                <option value="./audio/Bells.mp3">Church Bells</option>
+                <option value="./audio/Sheep.mp3">Sheep</option>
+            </select>
+        </div>
     </div>
     <div id="setupForm">
         <p id="RadiusText">RADIUS:</p>
@@ -51,6 +53,7 @@
         var markerRadius = 1000
         var hasLocatedUser = false
         var audio = document.createElement("audio");
+        var hasDismissed = false
 
 
         // document.getElementById("markerRadiusText").addEventListener("submit", changeMarkerRadius());
@@ -153,7 +156,7 @@
 
                     if (getDistance(source, marker.position) < markerRadius) {
                         console.log("You are within " + markerRadius + "m of a marker")
-                        if (!isNearMarker) {
+                        if (!isNearMarker && !hasDismissed) {
                             startAlarm()
                             isNearMarker = true
                         }
@@ -197,10 +200,12 @@
             audio.pause();
             navigator.vibrate(0)
             audio.currentTime = 0;
+            hasDismissed = true
         }
 
         //isNearMarker = false
         function resetAlarm() {
+            hasDismissed = false
             if (audio.paused) {
                 isNearMarker = false;
                 audio.play();
