@@ -58,9 +58,10 @@ body {
 }
 
 #selectModule {
-    width: 150px;
+    width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    display:block;
     padding: 5px 35px 5px 5px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -186,9 +187,25 @@ p{
 }
 
 #header{
-    padding: 20px;
+    padding-top:15px;
+    padding-bottom:15px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#d01807;
+    
 }
 
+#HeaderText{
+    font-family: 'Lato', sans-serif;
+    letter-spacing: .3rem;
+    color:#ffffff;
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+    text-align: center;
+}
+
+<<<<<<< HEAD
 .sliderSymbols{
     height: 30px;
 }
@@ -200,3 +217,6 @@ p{
 #plus {
     float: right;
 }
+=======
+
+>>>>>>> 1435630a2b441106710d8fd907598b24b8f4c062
