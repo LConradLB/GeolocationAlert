@@ -49,7 +49,7 @@
 
     <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEhRLlbIv_eyQiqMLJNME0iMG4AOHcGb4&libraries=geometry"></script>
-    
+    <script src="http://maps.google.com/maps/api/js?libraries=places"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         // Note: This example requires that you consent to location sharing when
@@ -64,6 +64,7 @@
         var hasLocatedUser = false
         var audio = document.createElement("audio");
         var hasDismissed = false
+        var isAlarmCurrentlyShowing = false
 
 
         // document.getElementById("markerRadiusText").addEventListener("submit", changeMarkerRadius());
@@ -78,188 +79,196 @@
         //     markerRadius = document.getElementById("radiusSlider").value;
         // }
 
+        // Create the search box and link it to the UI element.
+        
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: 51.397,
-                    lng: 0.3644
-                },
-                zoom: 17
-            });
-            infoWindow = new google.maps.InfoWindow;
 
-            map.addListener('click', function (e) {
-                placeMarker(e.latLng, map);
-            });
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: {
+                            lat: 51.397,
+                            lng: 0.3644
+                        },
+                        zoom: 17
+                    });
+                    infoWindow = new google.maps.InfoWindow;
 
-            updateLocation()
-        }
+                    map.addListener('click', function (e) {
+                        placeMarker(e.latLng, map);
+                    });
 
-        setInterval(function () {
-            checkDistance(userLocation, markerLocationArray);
-            updateLocation();
-        }, 3000)
+                    updateLocation()
 
-        function setZoom(zoomLevel) {
-            map.setZoom(zoomLevel);
-        }
+                    
+                }
 
-        function updateLocation() {
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
+                setInterval(function () {
+                    checkDistance(userLocation, markerLocationArray);
+                    updateLocation();
+                }, 3000)
 
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    infoWindow.open(map);
-                    if (!hasLocatedUser) {
-                        map.setCenter(pos);
-                        hasLocatedUser = true
+                function setZoom(zoomLevel) {
+                    map.setZoom(zoomLevel);
+                }
+
+                function updateLocation() {
+                    // Try HTML5 geolocation.
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            var pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent('Location found.');
+                            infoWindow.open(map);
+                            if (!hasLocatedUser) {
+                                map.setCenter(pos);
+                                hasLocatedUser = true
+                            }
+                            userLocation = pos
+                        }, function () {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        });
+                    } else {
+                        // Browser doesn't support Geolocation
+                        handleLocationError(false, infoWindow, map.getCenter());
                     }
-                    userLocation = pos
-                }, function () {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
-        }
+                }
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
-        }
+                function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+                    infoWindow.open(map);
+                }
 
-        //Add marker to map
-        function placeMarker(position, map) {
+                //Add marker to map
+                function placeMarker(position, map) {
 
-            var marker = new google.maps.Marker({
-                position: position,
-                map: map
-            });
-            console.log("position", position.lat())
-            markerLocationArray.push(marker)
-            //map.panTo(position);
-            console.log(getDistance(userLocation, position))
-            
-
-            swal({
-                title: "Alarm Placed!",
-                html: "An alarm has been placed at the location you tapped",
-                confirmButtonText: "Thanks!",
-            });
-            //swal("Added Location")
-        }   
+                    var marker = new google.maps.Marker({
+                        position: position,
+                        map: map
+                    });
+                    console.log("position", position.lat())
+                    markerLocationArray.push(marker)
+                    //map.panTo(position);
+                    console.log(getDistance(userLocation, position))
 
 
-        function getDistance(source, destination) {
-            return google.maps.geometry.spherical.computeDistanceBetween(
-                new google.maps.LatLng(source.lat, source.lng),
-                new google.maps.LatLng(destination.lat(), destination.lng())
-            );
-        }
+                    swal({
+                        title: "Alarm Placed!",
+                        html: "An alarm has been placed at the location you tapped",
+                        confirmButtonText: "Thanks!",
+                    });
+                    //swal("Added Location")
+                }
 
-        function checkDistance(source, markerLocationArray) {
 
-            if (markerLocationArray.length > 0) {
-                var isWithinMarker = false
-                for (var marker of markerLocationArray) {
+                function getDistance(source, destination) {
+                    return google.maps.geometry.spherical.computeDistanceBetween(
+                        new google.maps.LatLng(source.lat, source.lng),
+                        new google.maps.LatLng(destination.lat(), destination.lng())
+                    );
+                }
 
-                    if (getDistance(source, marker.position) < markerRadius) {
-                        console.log("You are within " + markerRadius + "m of a marker")
-                        isWithinMarker = true
-                        if (!isNearMarker) {
-                            startAlarm()
-                            isNearMarker = true
+                function checkDistance(source, markerLocationArray) {
+
+                    if (markerLocationArray.length > 0) {
+                        var isWithinMarker = false
+                        for (var marker of markerLocationArray) {
+
+                            if (getDistance(source, marker.position) < markerRadius) {
+                                console.log("You are within " + markerRadius + "m of a marker")
+                                isWithinMarker = true
+                                if (!isNearMarker) {
+                                    startAlarm()
+                                    isNearMarker = true
+                                }
+                            }
+                        }
+                        if (!isWithinMarker) {
+                            resetAlarm()
                         }
                     }
                 }
-                if (!isWithinMarker) {
-                    resetAlarm()
+
+                function startAlarm() {
+                    console.log("dismissed:", hasDismissed)
+                    if (!hasDismissed) {
+                        vibrate()
+                        sound()
+                        if (!isAlarmCurrentlyShowing) {
+                            swal({
+                                title: "Wake Up!",
+                                html: "You have arrived at a destination area",
+                                confirmButtonText: "Acknowledged!",
+                            });
+                        }
+                    }
                 }
-            }
-        }
 
-        function startAlarm() {
-            console.log("dismissed:", hasDismissed)
-            if (!hasDismissed) {
-                vibrate()
-                sound()
-                swal({
-                title: "Wake Up!",
-                html: "You have arrived at a destination area",
-                confirmButtonText: "Acknowledged!",
-            });
-            }
-        }
+                function vibrate() {
+                    if ("vibrate" in navigator) {
+                        var canVibrate = "vibrate" in navigator || "mozVibrate" in navigator;
 
-        function vibrate() {
-            if ("vibrate" in navigator) {
-                var canVibrate = "vibrate" in navigator || "mozVibrate" in navigator;
-
-                if (canVibrate && !("vibrate" in navigator)) {
-                    navigator.vibrate = navigator.mozVibrate;
+                        if (canVibrate && !("vibrate" in navigator)) {
+                            navigator.vibrate = navigator.mozVibrate;
+                        }
+                        navigator.vibrate([50000, 110, 50000, 110, 45000, 110, 20000, 110, 17000, 40, 45000, 110,
+                            20000, 110,
+                            17000,
+                            40, 50000
+                        ]);
+                    }
                 }
-                navigator.vibrate([50000, 110, 50000, 110, 45000, 110, 20000, 110, 17000, 40, 45000, 110, 20000, 110,
-                    17000,
-                    40, 50000
-                ]);
-            }
-        }
 
-        function sound() {
-            var e = document.getElementById("selectModule");
-            var audioSource = e.options[e.selectedIndex].value;
+                function sound() {
+                    var e = document.getElementById("selectModule");
+                    var audioSource = e.options[e.selectedIndex].value;
 
-            audio.src = audioSource
-            audio.addEventListener("ended", function () {
-                isNearMarker = false
-                document.removeChild(this);
-            }, false);
-            audio.play();
-        }
+                    audio.src = audioSource
+                    audio.addEventListener("ended", function () {
+                        isNearMarker = false
+                        document.removeChild(this);
+                    }, false);
+                    audio.play();
+                }
 
-        function stopAlarm() {
-            console.log("stopping alarm")
-            hasDismissed = true
-            console.log("Dismiss:", hasDismissed)
-            audio.pause();
-            navigator.vibrate(0)
-            audio.currentTime = 0;
-
-        }
-
-        //isNearMarker = false
-        function resetAlarm() {
-            console.log("Resetting alarm")
-            //hasDismissed = false
-            if (audio.paused) {
-                isNearMarker = false;
-                hasDismissed = false;
-                audio.currentTime = 0
-                if ("vibrate" in navigator) {
+                function stopAlarm() {
+                    console.log("stopping alarm")
+                    hasDismissed = true
+                    console.log("Dismiss:", hasDismissed)
+                    audio.pause();
                     navigator.vibrate(0)
-                }
-            } else {
-                audio.pause()
-                isNearMarker = false;
-                hasDismissed = false;
-                audio.currentTime = 0
-                if ("vibrate" in navigator) {
-                    navigator.vibrate(0)
-                }
-            }
+                    audio.currentTime = 0;
 
-        }
+                }
+
+                //isNearMarker = false
+                function resetAlarm() {
+                    console.log("Resetting alarm")
+                    //hasDismissed = false
+                    if (audio.paused) {
+                        isNearMarker = false;
+                        hasDismissed = false;
+                        audio.currentTime = 0
+                        if ("vibrate" in navigator) {
+                            navigator.vibrate(0)
+                        }
+                    } else {
+                        audio.pause()
+                        isNearMarker = false;
+                        hasDismissed = false;
+                        audio.currentTime = 0
+                        if ("vibrate" in navigator) {
+                            navigator.vibrate(0)
+                        }
+                    }
+
+                }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEhRLlbIv_eyQiqMLJNME0iMG4AOHcGb4&callback=initMap">
     </script>
